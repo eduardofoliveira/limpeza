@@ -1,0 +1,12 @@
+{
+  "name": "limpeza",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node src/index.js"
+  },
+  "dependencies": {
+    "oracledb": "^5.0.0"
+  }
+}
