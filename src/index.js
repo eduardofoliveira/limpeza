@@ -40,10 +40,12 @@ const executar = async () => {
         console.log(`Deletados`)
         await conn.execute(`commit`)
         console.log(`Commitando`)
+        console.log(`${i + 1} de ${rows.length}`)
       } catch (error) {
         console.log(error)
       }
     }
+    console.log(`Total: ${a + 1} de 1000`)
   }
 
   conn.close()
