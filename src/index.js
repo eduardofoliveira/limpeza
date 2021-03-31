@@ -43,31 +43,55 @@ const executar = async () => {
     // await conn.execute(`commit`)
     // console.log(`Commitando`)
 
+    // // if (quantidade > 0) {
+    rows = rows.map((row) => row.INT_CALLLOG_KEY)
+    // //   rows = rows.reduce((texto, item, index) => {
+    // //     if (index === rows.length - 1) {
+    // //       return (texto += `${item}`)
+    // //     }
+    // //     return (texto += `${item}, `)
+    // //   }, "")
+
+    // //   console.log(rows)
+
+    // //   try {
+    // //     await conn.execute(`
+    // //         delete from
+    // //             tbl_pbx_calllog
+    // //         where
+    // //             int_calllog_key in (${rows})
+    // //     `)
+    // //   } catch (error) {
+    // //     console.log(error)
+    // //   }
+
+    // //   console.log(`Deletados`)
+
+    // //   await conn.execute(`commit`)
+
+    // //   console.log(`Commitando`)
+    // // }
     if (quantidade > 0) {
-      rows = rows.map((row) => row.INT_CALLLOG_KEY)
-      rows = rows.reduce((texto, item, index) => {
-        if (index === rows.length - 1) {
-          return (texto += `${item}`)
+      for (let i = 0; i < rows.length; i++) {
+        const item = rows[i]
+
+        try {
+          await conn.execute(`
+                  delete from
+                      tbl_pbx_calllog
+                  where
+                      int_calllog_key = ${item}
+              `)
+        } catch (error) {
+          console.log(error)
         }
-        return (texto += `${item}, `)
-      }, "")
 
-      try {
-        await conn.execute(`
-            delete from
-                tbl_pbx_calllog
-            where
-                int_calllog_key in (${rows})
-        `)
-      } catch (error) {
-        console.log(error)
+        console.log(`Deletados`)
+
+        await conn.execute(`commit`)
+
+        console.log(`Commitando`)
       }
-
-      console.log(`Deletados`)
-
-      await conn.execute(`commit`)
-
-      console.log(`Commitando`)
     }
 
     console.timeEnd("tempo")
