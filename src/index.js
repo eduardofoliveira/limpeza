@@ -52,12 +52,16 @@ const executar = async () => {
         return (texto += `${item}, `)
       }, "")
 
-      await conn.execute(`
+      try {
+        await conn.execute(`
             delete from
                 tbl_pbx_calllog
             where
                 int_calllog_key in (${rows})
         `)
+      } catch (error) {
+        console.log(error)
+      }
 
       console.log(`Deletados`)
 
