@@ -19,7 +19,7 @@ const executar = async () => {
         ) and
         dtm_from_date BETWEEN TO_DATE ('01/01/2000 00:00:00', 'dd/mm/yyyy hh24:mi:ss')
         AND TO_DATE ('31/03/2020 00:00:00', 'dd/mm/yyyy hh24:mi:ss') and
-        rownum <= 1000
+        rownum <= 10
     order by
         dtm_from_date desc
   `)
