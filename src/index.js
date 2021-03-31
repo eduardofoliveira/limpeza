@@ -1,10 +1,10 @@
 const executar = async () => {
-  const conn = await require('./service/oracleCloud').getConnection()
+  const conn = await require("./service/oracleCloud").getConnection()
 
   let quantidade = 0
 
   do {
-    console.time('tempo')
+    console.time("tempo")
 
     let { rows } = await conn.execute(`
     select
@@ -22,7 +22,7 @@ const executar = async () => {
                 rf.int_calllog_key = cl.int_calllog_key
         ) and
         dtm_from_date BETWEEN TO_DATE ('01/01/2000 00:00:00', 'dd/mm/yyyy hh24:mi:ss')
-        AND TO_DATE ('01/06/2019 00:00:00', 'dd/mm/yyyy hh24:mi:ss') and
+        AND TO_DATE ('31/03/2020 00:00:00', 'dd/mm/yyyy hh24:mi:ss') and
         ROWNUM <= 1000
     order by
         dtm_from_date
@@ -50,7 +50,7 @@ const executar = async () => {
           return (texto += `${item}`)
         }
         return (texto += `${item}, `)
-      }, '')
+      }, "")
 
       await conn.execute(`
             delete from
@@ -66,7 +66,7 @@ const executar = async () => {
       console.log(`Commitando`)
     }
 
-    console.timeEnd('tempo')
+    console.timeEnd("tempo")
   } while (quantidade > 0)
 
   conn.close()
