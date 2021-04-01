@@ -26,6 +26,15 @@ const executar = async () => {
               where
                   gf.int_calllog_key = cl.int_calllog_key
           ) and
+          int_calllog_key not in (
+              select
+                  uf.int_calllog_key
+              from
+                  tbl_sys_userfile uf,
+                  tbl_pbx_calllog cl
+              where
+                  uf.int_calllog_key = cl.int_calllog_key
+          ) and
           dtm_from_date BETWEEN TO_DATE ('01/01/2000 00:00:00', 'dd/mm/yyyy hh24:mi:ss')
           AND TO_DATE ('31/03/2020 00:00:00', 'dd/mm/yyyy hh24:mi:ss') and
           rownum <= 1000
