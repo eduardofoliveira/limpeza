@@ -48,6 +48,12 @@ const executar = async () => {
     for (let i = 0; i < rows.length; i++) {
       const item = rows[i]
 
+      console.log(`
+      delete from
+          tbl_pbx_calllog
+      where
+          int_calllog_key = ${item}`)
+
       try {
         await conn.execute(`
           delete from
