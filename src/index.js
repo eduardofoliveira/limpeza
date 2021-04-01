@@ -36,7 +36,7 @@ const executar = async () => {
     console.log(rows.length)
     rows = rows.map((row) => row.INT_CALLLOG_KEY)
 
-    for (let i = 1; i < rows.length; i++) {
+    for (let i = 0; i < rows.length; i++) {
       const item = rows[i]
 
       try {
