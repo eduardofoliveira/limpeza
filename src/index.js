@@ -1,3 +1,8 @@
+const { subYears, format } = require("date-fns")
+
+const agora = new Date()
+const data = subYears(agora, 1)
+
 const executar = async () => {
   const conn = await require("./service/oracleCloud").getConnection()
 
@@ -36,7 +41,7 @@ const executar = async () => {
                   uf.int_calllog_key = cl.int_calllog_key
           ) and
           dtm_from_date BETWEEN TO_DATE ('01/01/2000 00:00:00', 'dd/mm/yyyy hh24:mi:ss')
-          AND TO_DATE ('31/03/2020 00:00:00', 'dd/mm/yyyy hh24:mi:ss') and
+          AND TO_DATE ('${format(data, "dd/MM/yyyy HH:mm:ss")}', 'dd/mm/yyyy hh24:mi:ss') and
           rownum <= 1000
       order by
           dtm_from_date
