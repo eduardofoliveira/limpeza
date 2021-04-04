@@ -45,6 +45,7 @@ const executar = async () => {
       calllog_key = item.CALLLOG_KEY
     }
   }
+  await conn.execute(`commit`)
   conn.close()
 }
 
