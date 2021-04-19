@@ -42,10 +42,10 @@ const executar = async () => {
         where
             int_calllog_key = ${calllog_key}
         `)
+      await conn.execute(`commit`)
       calllog_key = item.CALLLOG_KEY
     }
   }
-  await conn.execute(`commit`)
   conn.close()
 }
 
